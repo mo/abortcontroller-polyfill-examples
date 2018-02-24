@@ -1,0 +1,18 @@
+{
+  "name": "abortcontroller-polyfill-node-example",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Martin Olsson <martin@minimum.se> (https://mo.github.io)",
+  "license": "ISC",
+  "dependencies": {
+    "abortcontroller-polyfill": "^1.1.2",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "node-fetch": "^2.0.0"
+  }
+}

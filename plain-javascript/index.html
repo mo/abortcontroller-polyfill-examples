@@ -1,0 +1,50 @@
+<script src="https://unpkg.com/abortcontroller-polyfill/dist/browser-polyfill.js"></script>
+
+<style>
+body {
+    font-family: arial;
+    margin-top: 100px;
+}
+p, #result {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+<p>
+When this page loads it makes a fetch() request to api.github.com to
+retrieve the number of stars for the 'react' repository. There is a
+50% chance that the request is aborted, so press CTRL-R multiple
+times to see both cases.
+</p>
+<p>
+Note: this example assumes that fetch() is already available in the
+browser; it will polyfill the AbortController class and modify the
+fetch() function so that it uses the abort signal passed to it.
+If you need to support browsers that does not implement fetch at all,
+like for example Internet Explorer 11, then you need to load a separate
+polyfill for that before loading the abortcontroller-polyfill.
+</p>
+
+<div id="result"></div>
+
+<script>
+const resultElement = document.querySelector('#result');
+
+const controller = new AbortController();
+if (Math.random() < 0.5) {
+  controller.abort();
+}
+fetch('https://api.github.com/repos/facebook/react', { signal: controller.signal })
+  .then(r => r.json())
+  .then(json => {
+    resultElement.innerHTML = `<font color="green">Request was not aborted: The React GitHub repository has ${json.stargazers_count} stars, hit CTRL-R to try again.</font>`;
+  })
+  .catch(err => {
+    if (err.name === 'AbortError') {
+      resultElement.innerHTML = `<font color="red">fetch() request was aborted, hit CTRL-R to try again.</font>`;
+      return;
+    }
+    console.log(err);
+  })
+  </script>

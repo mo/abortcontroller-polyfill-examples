@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<script src="https://unpkg.com/promise-polyfill/dist/polyfill.min.js"></script>
+<script src="https://unpkg.com/unfetch/dist/unfetch.umd.js"></script>
+<script>fetch = unfetch</script>
+<script src="https://unpkg.com/abortcontroller-polyfill/dist/browser-polyfill.js"></script>
+
+<style>
+body {
+    font-family: arial;
+    margin-top: 50px;
+}
+ul, p, #result {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+<p>
+When this page loads it makes a fetch() request to api.github.com to
+retrieve the number of stars for the 'react' repository. There is a
+50% chance that the request is aborted, so press CTRL-R multiple
+times to see both cases.
+</p>
+<p>
+Note: this example is designed to run in old browsers like Microsoft Explorer 11:
+<ul>
+  <li>it adds support for fetch via "unfetch"
+  <li>it adds support for promises via "promise-polyfill"
+  <li>it uses no ES6 arrow functions or template literals and so on
+</ul>
+</p>
+
+<div id="result"></div>
+
+<script>
+const resultElement = document.querySelector('#result');
+
+const controller = new AbortController();
+if (Math.random() < 0.5) {
+  controller.abort();
+}
+fetch('https://api.github.com/repos/facebook/react', { signal: controller.signal })
+  .then(function(r) { return r.json() })
+  .then(function(json) {
+    resultElement.innerHTML = '<font color="green">Request was not aborted: The React GitHub repository has ' + json.stargazers_count + ' stars, hit CTRL-R to try again.</font>';
+  })
+  .catch(function(err) {
+    if (err.name === 'AbortError') {
+      resultElement.innerHTML = '<font color="red">fetch() request was aborted, hit CTRL-R to try again.</font>';
+      return;
+    }
+    console.log(err);
+  })
+  </script>
