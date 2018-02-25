@@ -3,7 +3,7 @@
 <script src="https://unpkg.com/promise-polyfill/dist/polyfill.min.js"></script>
 <script src="https://unpkg.com/unfetch/dist/unfetch.umd.js"></script>
 <script>fetch = unfetch</script>
-<script src="https://unpkg.com/abortcontroller-polyfill/dist/browser-polyfill.js"></script>
+<script src="https://unpkg.com/abortcontroller-polyfill/dist/umd-polyfill.js"></script>
 
 <style>
 body {
@@ -24,12 +24,12 @@ times to see both cases.
 </p>
 <p>
 Note: this example is designed to run in old browsers like Microsoft Explorer 11:
+</p>
 <ul>
   <li>it adds support for fetch via "unfetch"
   <li>it adds support for promises via "promise-polyfill"
   <li>it uses no ES6 arrow functions or template literals and so on
 </ul>
-</p>
 
 <div id="result"></div>
 
