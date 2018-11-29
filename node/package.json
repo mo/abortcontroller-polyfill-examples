@@ -10,9 +10,9 @@
   "author": "Martin Olsson <martin@minimum.se> (https://mo.github.io)",
   "license": "ISC",
   "dependencies": {
-    "abortcontroller-polyfill": "^1.1.8",
+    "abortcontroller-polyfill": "^1.2.1",
     "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "node-fetch": "^2.0.0"
+    "babel-preset-env": "^1.7.0",
+    "node-fetch": "^2.3.0"
   }
 }
