@@ -6,13 +6,18 @@
     "abortcontroller-polyfill": "^1.2.1",
     "react": "^16.6.3",
     "react-dom": "^16.6.3",
-    "react-scripts": "^2.1.1",
-    "unfetch": "^4.0.1"
+    "react-scripts": "^2.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "browserslist": [
+    ">1.0%",
+    "not dead",
+    "not ie > 0",
+    "not op_mini all"
+  ]
 }
