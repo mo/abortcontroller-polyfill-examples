@@ -5,7 +5,7 @@ const { fetch, Request } = abortableFetch({fetch: _nodeFetch, Request: _nodeFetc
 const controller = new AbortController();
 const signal = controller.signal;
 controller.abort();
-fetch(Request("http://api.github.com", {signal}))
+fetch(new Request("http://api.github.com", {signal}))
   .then(r => r.json())
   .then(j => console.log(j))
   .catch(err => {
