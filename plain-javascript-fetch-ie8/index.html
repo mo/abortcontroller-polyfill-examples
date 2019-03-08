@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.7/es5-shim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.7/es5-sham.min.js"></script>
+<script src="https://unpkg.com/promise-polyfill@8.1.0/dist/polyfill.min.js"></script>
+<!-- <script src="https://unpkg.com/unfetch@4.1.0/polyfill/index.js"></script> -->
+<script src="https://unpkg.com/fetch-ie8@1.5.0/fetch.js"></script>
+<script src="https://unpkg.com/abortcontroller-polyfill@1.2.6/dist/umd-polyfill.js"></script>
+
+<style>
+body {
+    font-family: arial;
+    margin-top: 50px;
+}
+ul, p, #result {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+<p>
+When this page loads it makes a fetch() request to api.github.com to
+retrieve the number of stars for the 'react' repository. There is a
+50% chance that the request is aborted, so press CTRL-R multiple
+times to see both cases.
+</p>
+<p>
+Note: this example is designed to run in old browsers like Microsoft Explorer 8:
+</p>
+<ul>
+  <li>it adds support for fetch via "github-fetch"
+  <li>it adds support for promises via "promise-polyfill"
+  <li>it uses only ES3
+</ul>
+
+<div id="result"></div>
+
+<script>
+var resultElement = document.querySelector('#result');
+
+var controller = new AbortController();
+if (Math.random() < 0.5) {
+  controller.abort();
+}
+fetch('/response.json', { signal: controller.signal })
+  .then(function(r) {
+    return r.json()
+  })
+  .then(function(json) {
+    resultElement.innerHTML = '<font color="green">Request was not aborted: The React GitHub repository has ' + json.stargazers_count + ' stars, hit CTRL-R to try again.</font>';
+  })['catch'](function(err) {
+    if (err.name === 'AbortError') {
+      resultElement.innerHTML = '<font color="red">fetch() request was aborted, hit CTRL-R to try again.</font>';
+      return;
+    }
+    console.log(err);
+  })
+</script>
