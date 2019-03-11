@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "abortcontroller-polyfill": "^1.2.5",
-    "react": "^16.7.0",
-    "react-dom": "^16.7.0",
-    "react-scripts": "^2.1.5"
+    "abortcontroller-polyfill": "^1.2.9",
+    "react": "^16.8.4",
+    "react-dom": "^16.8.4",
+    "react-scripts": "^2.1.8"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -8,3 +8,8 @@ When I tried the "fetch-ie8" npm package instead of unfetch it worked though (bu
 no CORS, hence the /response.json URL in the example).
 
 Also keep in mind that github-fetch polyfill only supports IE 10+
+
+To run the example, use:
+
+npm install -g http-server
+http-server -p 3000
