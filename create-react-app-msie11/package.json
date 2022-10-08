@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "abortcontroller-polyfill": "^1.2.9",
-    "promise-polyfill": "8.1.0",
+    "abortcontroller-polyfill": "^1.7.3",
+    "promise-polyfill": "^8.2.3",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-scripts": "^2.1.8",
-    "unfetch": "^4.1.0"
+    "unfetch": "^4.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
